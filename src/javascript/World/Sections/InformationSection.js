@@ -140,8 +140,15 @@ export default class InformationSection {
 
       // Texture
       item.texture = _option.labelTexture;
-      item.texture.magFilter = THREE.NearestFilter;
-      item.texture.minFilter = THREE.LinearFilter;
+      if (item.texture) {
+        item.texture.magFilter = THREE.NearestFilter;
+        item.texture.minFilter = THREE.LinearFilter;
+      } else {
+        console.warn(
+          "Link labelTexture not found in resources.items for href:",
+          _option.href
+        );
+      }
 
       // Create label
       item.labelMesh = new THREE.Mesh(
@@ -186,9 +193,12 @@ export default class InformationSection {
 
     // Texture
     this.activities.texture = this.resources.items.informationActivitiesTexture;
-    this.activities.texture.magFilter = THREE.NearestFilter;
-    this.activities.texture.minFilter = THREE.LinearFilter;
-
+    if (this.activities.texture) {
+      this.activities.texture.magFilter = THREE.NearestFilter;
+      this.activities.texture.minFilter = THREE.LinearFilter;
+    } else {
+      console.warn("informationActivitiesTexture not found in resources.items");
+    }
     // Material
     this.activities.material = new THREE.MeshBasicMaterial({
       wireframe: false,

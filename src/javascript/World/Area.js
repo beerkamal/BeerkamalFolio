@@ -132,8 +132,12 @@ export default class Area extends EventEmitter {
     );
 
     this.key.enter.texture = this.resources.items.areaEnterTexture;
-    this.key.enter.texture.magFilter = THREE.NearestFilter;
-    this.key.enter.texture.minFilter = THREE.LinearFilter;
+    if (!this.key.enter.texture) {
+      this.key.enter.texture.magFilter = THREE.NearestFilter;
+      this.key.enter.texture.minFilter = THREE.LinearFilter;
+    } else {
+      console.warn("areaEnterTexture not found in resources.items");
+    }
 
     this.key.enter.material = new THREE.MeshBasicMaterial({
       color: 0x00ff00,
@@ -164,8 +168,12 @@ export default class Area extends EventEmitter {
     );
 
     this.key.icon.texture = this.resources.items.areaKeyEnterTexture;
-    this.key.icon.texture.magFilter = THREE.NearestFilter;
-    this.key.icon.texture.minFilter = THREE.LinearFilter;
+    if (!this.key.icon.texture) {
+      this.key.icon.texture.magFilter = THREE.NearestFilter;
+      this.key.icon.texture.minFilter = THREE.LinearFilter;
+    } else {
+      console.warn("areaEnterTexture icon not found in resources.items");
+    }
 
     this.key.icon.material = new THREE.MeshBasicMaterial({
       color: 0x00ff00,
